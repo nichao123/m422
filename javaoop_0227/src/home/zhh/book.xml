@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<books>
+                    
+    
+    
+    
+    <book bno="1" bon="1" id="T11">
+                                        
+        
+        
+        
+        <name>a</name>
+                                        
+        
+        
+        
+        <price>100.0</price>
+                                    
+    
+    
+    
+    </book>
+                    
+    
+    
+    
+    <book bno="584859592" id="T15">
+                                        
+        
+        
+        
+        <name>Spring in Action</name>
+                                        
+        
+        
+        
+        <price>39.0</price>
+                                    
+    
+    
+    
+    </book>
+                    
+    
+    
+    
+    <book bno="684859593" id="T16">
+                                        
+        
+        
+        
+        <name>Mysql数据库</name>
+                                        
+        
+        
+        
+        <price>49.9</price>
+                                    
+    
+    
+    
+    </book>
+                
+    
+
+
+
+</books>

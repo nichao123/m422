@@ -1,0 +1,106 @@
+一、传统方式实现Ajax的不足
+    1步骤繁琐
+    2方法、属性、常用值较多不好记忆
+    3处理复杂结构的响应数据（如XML格式）比较烦琐
+    4浏览器兼容问题
+
+二、Jquery做无刷新
+2.1）$.ajax（[setting]）
+    常用属性参数
+        url	   String	发送请求的地址，默认为当前页地址
+        type	String	请求方式，默认为GET
+        data	PlainObject或 String或Array	发送到服务器的数据
+        dataType	String	预期服务器返回的数据类型，包括：XML、HTML、Script、JSON、JSONP、text
+        success	Function( 任意类型  result,
+                String  textStatus,
+                jqXHR  jqxhr )	请求成功后调用的函数
+        参数result：可选，由服务器返回的数据
+
+     语法：$.ajax({
+           type: "POST",
+           url: "some.php",
+           data: "name=John&location=Boston",
+           success: function(msg){
+             alert( "Data Saved: " + msg );
+           }
+        });
+
+
+2.2）语法：$.get( url [, data] [, success] [, dataType] );
+2.3）语法：$.post( url [, data] [, success] [, dataType] );
+
+
+
+三、JSON
+    JSON（JavaScript  Object  Notation）
+        一种轻量级的数据交换格式
+        采用独立于语言的文本格式
+        通常用于在客户端和服务器之间传递数据
+    JSON的优点
+        轻量级交互语言
+        结构简单
+        易于解析
+
+
+   定义JSON对象
+     var JSON对象 = { "name" : value,  "name" : value,  …… };
+
+   定义JSON数组
+      var JSON数组 = [ value,  value,  …… ];
+
+
+补充：serialize() 序列表表格内容为字符串。（登录，注册。。）
+      传值： $(表单名称/id/class/标签).serialize() ；
+      按钮:  必须普通按钮,不是提交按钮
+      *** $("#frm").serialize()
+
+      $("[name=\"but\" ]").click(function () {
+            //无刷新
+            $.get("login",$("#frm").serialize(),function (data) {
+
+            }
+       });
+
+
+ 外卖网：MVC实现(参考：mvn_0326)
+    1）用户 userinfo 表,实现功能;
+       a)注册(添加)
+       b)登录(查询)
+       c)用户列表(查询ALL)
+       d)修改当前的用户(修改)
+       e)显示当前的用户名(会话保存数据)
+       h)销毁当前的用户名(会话失效)
+
+Jquery的ajax无刷新
+附加：1）上传下载；
+       上传(服务器)
+       （1）要求：表单必须是post,enctype类型
+           <form action="up" method="post"  enctype="multipart/form-data">
+       （2）servlet3.0版本以前需要使用第三方的jar包commons-fileupload来实现上传文件，servlet3.0版本自带了上传文件的api，无需第三方jar包
+
+            servlet3.0将上传的文件保存在Part实例中，可以通过request对象根据上传的表单控件的name获取对应的part对象，同时也支持多个文件上传
+            通过part对象可直接得到文件的输入流inputStream，在通过outputStream写到本地即可
+            可以使UUID来作为文件名，至于后缀名就需要根据上传时的文件后缀来获取了，part对象里本身并没有存储上传文件的名称
+
+            浏览器发送上传文件请求时将文件名存储在Request Head里的Content-Disposition里，但Content-Disposition得值里除了文件名信息还有一些其他信息，所以只能通过字符串截取的方式获取文件的后缀名。
+            Content-Disposition：form-data; name="file"; filename="test.txt"
+
+        (3) 获取服务器的路径： request.getServletContext().getRealPath()
+          E:\myjava\mvn_0327\target\mvn_0327\upload/28c0ad3f-7c81-4061-a8e8-525063caac37.jpg
+
+**封装方法： 上传多个文件
+    //        //获得Part实例多个集合
+    //        Collection<Part> parts= request.getParts();
+    //        //遍历
+    //        while(Iterator<Part> it=parts.iterator(); it.hasNext()){
+    //            //   获得Part实例
+    //            Part part=  it.next();
+    //        }
+
+       下载(客户端)
+         mvn: target目录无法访问无权限类
+
+
+      2）分页；
+      3）购物车；
+

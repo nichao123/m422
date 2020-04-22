@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hlx.mapper.FoodinfoMapper">
+  <resultMap id="BaseResultMap" type="org.hlx.pojo.Foodinfo">
+    <id column="foodId" jdbcType="INTEGER" property="foodid" />
+    <result column="foodName" jdbcType="VARCHAR" property="foodname" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="foodPrice" jdbcType="DECIMAL" property="foodprice" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="foodImage" jdbcType="VARCHAR" property="foodimage" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    foodId, foodName, remark, foodPrice, description, foodImage
+  </sql>
+  <select id="selectByExample" parameterType="org.hlx.pojo.FoodinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from foodinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from foodinfo
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from foodinfo
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.hlx.pojo.FoodinfoExample">
+    delete from foodinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.hlx.pojo.Foodinfo">
+    insert into foodinfo (foodId, foodName, remark, 
+      foodPrice, description, foodImage
+      )
+    values (#{foodid,jdbcType=INTEGER}, #{foodname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{foodprice,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{foodimage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.hlx.pojo.Foodinfo">
+    insert into foodinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="foodid != null">
+        foodId,
+      </if>
+      <if test="foodname != null">
+        foodName,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="foodprice != null">
+        foodPrice,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="foodimage != null">
+        foodImage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="foodid != null">
+        #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="foodname != null">
+        #{foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="foodprice != null">
+        #{foodprice,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="foodimage != null">
+        #{foodimage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.hlx.pojo.FoodinfoExample" resultType="java.lang.Long">
+    select count(*) from foodinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update foodinfo
+    <set>
+      <if test="record.foodid != null">
+        foodId = #{record.foodid,jdbcType=INTEGER},
+      </if>
+      <if test="record.foodname != null">
+        foodName = #{record.foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foodprice != null">
+        foodPrice = #{record.foodprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foodimage != null">
+        foodImage = #{record.foodimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update foodinfo
+    set foodId = #{record.foodid,jdbcType=INTEGER},
+      foodName = #{record.foodname,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      foodPrice = #{record.foodprice,jdbcType=DECIMAL},
+      description = #{record.description,jdbcType=VARCHAR},
+      foodImage = #{record.foodimage,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hlx.pojo.Foodinfo">
+    update foodinfo
+    <set>
+      <if test="foodname != null">
+        foodName = #{foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="foodprice != null">
+        foodPrice = #{foodprice,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="foodimage != null">
+        foodImage = #{foodimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hlx.pojo.Foodinfo">
+    update foodinfo
+    set foodName = #{foodname,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      foodPrice = #{foodprice,jdbcType=DECIMAL},
+      description = #{description,jdbcType=VARCHAR},
+      foodImage = #{foodimage,jdbcType=VARCHAR}
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </update>
+</mapper>

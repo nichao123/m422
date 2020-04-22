@@ -1,0 +1,36 @@
+2020.2.24  作业讲解和补充线程
+
+一、作业讲解
+
+二、线程的生命周期
+
+三、线程死锁 (了解)
+
+四、线程同步互斥
+
+五、Lock锁   https://www.cnblogs.com/junjiang3/p/8733115.html
+    通常我们在使用synchronized关键字的时候会遇到下面这些问题：
+  （1）不可控性，无法做到随心的加锁和释放锁。
+  （2）效率比较低下，比如我们现在并发的读两个文件，读与读之间是互不影响的，但如果给这个读的对象使用synchronized来实现同步的话，
+  那么只要有一个线程进入了，那么其他的线程都要等待。
+  （3）无法知道线程是否获取到了锁。
+ 而上面synchronized的这些问题，Lock都可以很好的解决，并且jdk1.5以后，还提供了各种锁，
+ 例如读写锁，但有一点需要注意，使用synchronized关键时，无须手动释放锁，
+ 但使用Lock必须手动释放锁。
+
+ 下面我们就来学习一下Lock锁。
+
+    常用方法：
+      1、 void lock(); 上锁
+      2、 void unlock();释放锁
+      3、 boolean tryLock(); 获取锁，如果获取到锁，就返回true，否则false;
+
+
+      在使用Lock的时候，有一种固定的格式，如下：
+      Lock l = ...;
+            l.lock();
+            try {
+            　　// access the resource protected by this lock
+            } finally {// 必须使用try，最后在finally里面释放锁
+            　　l.unlock();
+            }

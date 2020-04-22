@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--必须指定当前映射的文件名-->
+<mapper namespace="org.hlx.dao.FoodInfoDao">
+
+    <!--重用的SQL块 id名称-->
+    <sql id="table" >
+         select * from foodinfo
+    </sql>
+
+
+    <!--id：方法名唯一， parameterType参数类型-->
+    <insert id="insert" parameterType="Foodinfo">
+    insert into foodinfo(foodName,remark,foodPrice,description,foodImage)
+     values(#{foodName},#{remark},#{foodPrice},#{description},#{foodImage})
+    </insert>
+
+
+
+</mapper>

@@ -1,0 +1,11 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <!--属于所属的元素的命名空间-->
+<batchCompany xmlns="http://www.Aptech_edu.ac"
+              xmlns:tea="http://www.tea.org">
+    <batch-list>
+        <batch type="thirdbatch">第三批次</batch>
+        <batch tea:type="thirdbatch">第三批茶</batch>
+        <batch>午班批次</batch>
+    </batch-list>
+</batchCompany>

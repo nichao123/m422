@@ -1,0 +1,26 @@
+https://www.w3cschool.cn/wkspring/j3181mm3.html
+1.HelloWorld
+
+2.DI（Dependency Injection，依赖注入）  给属性赋值就为依赖注入
+
+总之： IOC控制反转：由spring容器来创建对象
+       DI依赖注入:  由spring容器来给属性赋值
+     * 最常见的DI： set注入(必须有setXXX()方法)
+
+3.BeanScope Bean作用范围 (scope="singleton" /scope="prototype")
+
+4.IOC(Inversion of control 控制反转) 创建对象;  生命周期
+<bean id="hello" class="com.hlx.life.Hello" init-method="init" destroy-method="destroy"/>
+
+5.Bean extends
+ Animal/Cat
+ <bean id="animal" class="one.com.hlx.extend.Animal" abstract="true">
+ <bean id="cat" class="one.com.hlx.extend.Cat" parent="animal">
+
+6.MVC
+  1)pojo
+  2)dao (save)
+  3)servic
+  4)action
+  5)test
+ 

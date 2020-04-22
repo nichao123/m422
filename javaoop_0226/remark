@@ -1,0 +1,63 @@
+2020.2.25 作业讲解和XML解析
+一、作业讲解
+二、 DOM解析XML
+    文档对象模型(Document Object Model)
+    DOM把XML文档映射成一个倒挂的树
+
+   接口：
+   1）Document:整个文档
+       (1) NodeList getElementsByTagName(String Tag) 根据节点名称获取孩子节点
+       (2) Element getDocumentElement(); 获得根节点
+       (3) Element createElement(String tagName) 创建节点
+       (4) Attr createAttribute(String name) 创建属性
+
+   2) Node :单个节点
+      （1） NodeList getChildNodes()  获得孩子节点
+      （2） Node getFirstChild();  获得第一个子节点
+      （2） Node removeChild(Node oldChild);  删除一个子节点
+      （2） Node appendChild(Node newChild);  添加一个子节点
+
+
+   3）Element：元素
+       (1) String getTagName() :获得标签名称；
+       (2) setAttribute(String name,  String value) 设置属性的值
+       (3) removeAttribute(String name)  移除属性
+
+
+
+5) DOM解析XML文件具体步骤:
+    2.1>面向对象来解析XML;
+    2.2>封装Student类
+    2.3>封装业务类
+       （1） 文档对象方法
+       （2） 显示XML方法
+       （3） 添加方法
+           3.1)创建节点：document.createElement（String str）
+           3.2)创建属性节点：document.createAttribute（String str）
+           3.3)设置属性值：setValue(String value)
+           3.4)设置文本值：setTextContent(String textContent)
+           3.5)添加节点：Node appendChild(Node newChild)
+           3.6)根节点： document.getDocumentElement();
+        (4)写入XML方法（通用的）==>（添加，删除，修改）
+            4.1)转换器工厂对象  TransformerFactory factory = TransformerFactory.newInstance();
+            4.2)转换器对象  Transformer transform = factory.newTransformer();
+            4.3)DOM数据源对象   DOMSource source = new DOMSource(document文档对象);
+            4.4)文件结果流对象    StreamResult result = new StreamResult(new FileOutputStream(要解析的文件名));
+            4.5)文件写入XML   transformer.transform(source, result);
+
+总结：
+   1、作业讲解
+   2、解析XML文件(CURD)
+
+
+   3、 DOM4J解析XML文件
+       优点：
+
+
+     1>下载DOM4J:  https://dom4j.github.io/
+     2>DOM4J是 dom4j.org 出品的一个开源 XML 解析包。DOM4J应用于 Java 平台，采用了 Java 集合框架并完全支持 DOM，SAX 和 JAXP。
+     3>DOM与DOM4J最大的区别：
+         Dom：把整个文档作为一个对象。
+         DOM4J 最大的特色是使用大量的接口
+
+

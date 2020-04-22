@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<class>
+    <student no="10101" email="22@.qq.com">
+        <name>徐晨阳</name>
+        <gender>男</gender>
+        <tel>110</tel>
+        <HE></HE>
+
+        <!--地址包含省份和城市-->
+        <address>
+            <city>
+                <area></area>
+            </city>
+        </address>
+
+    </student>
+
+    <student no="10102">
+        <name>Charlie</name>
+        <gender>男</gender>
+        <tel>120</tel>
+    </student>
+
+    <student no="10103">
+        <name>Corleone</name>
+        <gender>男</gender>
+        <tel>119</tel>
+    </student>
+</class>

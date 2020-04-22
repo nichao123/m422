@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mvn1_0318" />
+        <module name="mvn_319" />
+        <module name="mvn_320" />
+        <module name="mvn_323" />
+        <module name="mvn_324" />
+        <module name="mvn_325" />
+        <module name="mvn_402" />
+        <module name="mvn_407" />
+        <module name="mvn_407_auto" />
+        <module name="mvn_413" />
+        <module name="mvn_chaoshi" />
+        <module name="mvn_ssm_417" />
+        <module name="mvn_ssm_app" />
+        <module name="mvn_test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mvn1_0318" target="1.7" />
+      <module name="mvn_319" target="1.7" />
+      <module name="mvn_320" target="1.7" />
+      <module name="mvn_323" target="1.7" />
+      <module name="mvn_324" target="1.7" />
+      <module name="mvn_325" target="1.7" />
+      <module name="mvn_402" target="1.7" />
+      <module name="mvn_407" target="1.7" />
+      <module name="mvn_407_auto" target="1.7" />
+      <module name="mvn_413" target="1.7" />
+      <module name="mvn_chaoshi" target="1.7" />
+      <module name="mvn_ssm_417" target="1.7" />
+      <module name="mvn_ssm_app" target="1.7" />
+      <module name="mvn_test" target="1.7" />
+      <module name="ssss" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

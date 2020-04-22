@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hlx.mapper.UserinfoMapper">
+  <resultMap id="BaseResultMap" type="org.hlx.pojo.Userinfo">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="loginName" jdbcType="VARCHAR" property="loginname" />
+    <result column="loginPass" jdbcType="VARCHAR" property="loginpass" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="admin" jdbcType="INTEGER" property="admin" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    userId, loginName, loginPass, phone, realname, amount, admin
+  </sql>
+  <select id="selectByExample" parameterType="org.hlx.pojo.UserinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from userinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinfo
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.hlx.pojo.UserinfoExample">
+    delete from userinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.hlx.pojo.Userinfo">
+    insert into userinfo (userId, loginName, loginPass, 
+      phone, realname, amount, 
+      admin)
+    values (#{userid,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{loginpass,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{admin,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.hlx.pojo.Userinfo">
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="loginname != null">
+        loginName,
+      </if>
+      <if test="loginpass != null">
+        loginPass,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="admin != null">
+        admin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpass != null">
+        #{loginpass,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="admin != null">
+        #{admin,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.hlx.pojo.UserinfoExample" resultType="java.lang.Long">
+    select count(*) from userinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update userinfo
+    <set>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginname != null">
+        loginName = #{record.loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginpass != null">
+        loginPass = #{record.loginpass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realname != null">
+        realname = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.admin != null">
+        admin = #{record.admin,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update userinfo
+    set userId = #{record.userid,jdbcType=INTEGER},
+      loginName = #{record.loginname,jdbcType=VARCHAR},
+      loginPass = #{record.loginpass,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      realname = #{record.realname,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      admin = #{record.admin,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hlx.pojo.Userinfo">
+    update userinfo
+    <set>
+      <if test="loginname != null">
+        loginName = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpass != null">
+        loginPass = #{loginpass,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="admin != null">
+        admin = #{admin,jdbcType=INTEGER},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hlx.pojo.Userinfo">
+    update userinfo
+    set loginName = #{loginname,jdbcType=VARCHAR},
+      loginPass = #{loginpass,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      admin = #{admin,jdbcType=INTEGER}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

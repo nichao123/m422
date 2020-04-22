@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/2.15/2.15.iml" filepath="$PROJECT_DIR$/2.15/2.15.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.17/2.17.iml" filepath="$PROJECT_DIR$/2.17/2.17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.18/2.18.iml" filepath="$PROJECT_DIR$/2.18/2.18.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.19/2.19.iml" filepath="$PROJECT_DIR$/2.19/2.19.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.20/2.20.iml" filepath="$PROJECT_DIR$/2.20/2.20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.21/2.21.iml" filepath="$PROJECT_DIR$/2.21/2.21.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.23/2.23.iml" filepath="$PROJECT_DIR$/2.23/2.23.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.24/2.24.iml" filepath="$PROJECT_DIR$/2.24/2.24.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.25/2.25.iml" filepath="$PROJECT_DIR$/2.25/2.25.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.26/2.26.iml" filepath="$PROJECT_DIR$/2.26/2.26.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.27/2.27.iml" filepath="$PROJECT_DIR$/2.27/2.27.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.28/2.28.iml" filepath="$PROJECT_DIR$/2.28/2.28.iml" />
+      <module fileurl="file://$PROJECT_DIR$/211/211.iml" filepath="$PROJECT_DIR$/211/211.iml" />
+      <module fileurl="file://$PROJECT_DIR$//666.iml" filepath="$PROJECT_DIR$//666.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Renji/Renji.iml" filepath="$PROJECT_DIR$/Renji/Renji.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn1_0318/mvn1_0318.iml" filepath="$PROJECT_DIR$/mvn1_0318/mvn1_0318.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_319/mvn_319.iml" filepath="$PROJECT_DIR$/mvn_319/mvn_319.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_320/mvn_320.iml" filepath="$PROJECT_DIR$/mvn_320/mvn_320.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_323/mvn_323.iml" filepath="$PROJECT_DIR$/mvn_323/mvn_323.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_324/mvn_324.iml" filepath="$PROJECT_DIR$/mvn_324/mvn_324.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_325/mvn_325.iml" filepath="$PROJECT_DIR$/mvn_325/mvn_325.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_402/mvn_402.iml" filepath="$PROJECT_DIR$/mvn_402/mvn_402.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_407/mvn_407.iml" filepath="$PROJECT_DIR$/mvn_407/mvn_407.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_407_auto/mvn_407_auto.iml" filepath="$PROJECT_DIR$/mvn_407_auto/mvn_407_auto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_413/mvn_413.iml" filepath="$PROJECT_DIR$/mvn_413/mvn_413.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_chaoshi/mvn_chaoshi.iml" filepath="$PROJECT_DIR$/mvn_chaoshi/mvn_chaoshi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_ssm_417/mvn_ssm_417.iml" filepath="$PROJECT_DIR$/mvn_ssm_417/mvn_ssm_417.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_ssm_app/mvn_ssm_app.iml" filepath="$PROJECT_DIR$/mvn_ssm_app/mvn_ssm_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvn_test/mvn_test.iml" filepath="$PROJECT_DIR$/mvn_test/mvn_test.iml" />
+    </modules>
+  </component>
+</project>

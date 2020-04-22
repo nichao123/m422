@@ -1,0 +1,65 @@
+一、登录表单提交：
+   1）表单提交的参数与处理型参数必须相同;
+       public String login(Model model,String uname,String upass){}
+       表单：<input type="text" name="uname"/>
+
+   2）如果是一个对象，怎样传值;
+      表单提交参数名与对象的属性名相同
+      public String login(ModelMap map,User user){}
+      表单：<input type="text" name="uname"/>
+
+二、 SpringMVC注解请求参数的使用：
+      1) 通过@PathVariable接收URL中的请求参数{XX}
+
+      2）通过@RequestParam接收请求参数
+         @RequestParam：将请求参数绑定到你控制器的方法参数上（是springmvc中接收普通参数的注解）
+         语法：@RequestParam(value=”参数名”,required=”true/false”,defaultValue=””)
+         value：参数名
+         required：是否包含该参数，默认为true，表示该请求路径中必须包含该参数，如果不包含就报错。
+         defaultValue：默认参数值，如果设置了该值，required=true将失效，自动为false,如果没有传该参数，就使用默认值
+
+     * 3) 通过@ModelAttribute接收请求参数
+          当@ModelAttribute注解放在处理方法的形参上时,直接以实体对象作为形参的方式接收请求参数
+
+          作用:将该绑定的命令对象以"userinfo"为名称添加到模型对象中供视图页面展示使用。
+           我们此时可以在视图页面使用${userinfo.uname}来获取绑定的命令对象的属性。
+
+三、重定向与转发
+     1)转发：在SpringMVC框架中，控制器类中处理方法的return语句默认就是转发实现，只不过实现的是转发到视图
+         return "login";   ==>跳转到视图页面
+
+         return "forward:/user/show";  ==》跳转到某一个控制器中的处理方法中
+
+     2)重定向：
+          return "redirect:/user/show"; ==》跳转到某一个控制器中的处理方法中
+
+          return "redirect:http://www.baidu.com";==》跳转到外围网；
+
+
+注意： 转发到一个静态资源      return "forward:/html/index.html";
+       但是必须要springmvc.xml中配置：    <mvc:default-servlet-handler/>
+
+
+http://c.biancheng.net/view/4430.html
+JSON 概述
+
+JSON 数据转换
+    为实现浏览器与控制器类之间的 JSON 数据交互，
+Spring MVC 提供了 MappingJackson2HttpMessageConverter 实现类默认处理 JSON 格式请求响应。
+该实现类利用 Jackson 开源包读写 JSON 数据，将 Java 对象转换为 JSON 对象和 XML 文档，同时也可以将 JSON 对象和 XML 文档转换为 Java 对象。
+
+  在使用注解开发时需要用到两个重要的 JSON 格式转换注解，分别是 @RequestBody 和 @ResponseBody。
+  @RequestBody：(请求的参数是json)用于将请求体中的数据绑定到方法的形参中，该注解应用在方法的形参上。
+  @ResponseBody：(响应的结果是json)用于直接返回 return 对象，该注解应用在方法上。
+
+
+步骤：
+   1）在pom.xml中导入依赖包
+       <!--阿里巴巴的jSON -->
+       <dependency>
+         <groupId>com.alibaba</groupId>
+         <artifactId>fastjson</artifactId>
+         <version>1.2.28</version>
+       </dependency>
+
+  2） 在根目录下创建css 或 js 目录；

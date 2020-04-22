@@ -1,0 +1,229 @@
+框架技术
+	是一个应用程序的半成品
+	提供可重用的公共结构
+	按一定规则组织的一组组件
+
+分析优势
+	不用再考虑公共问题
+	专心在业务实现上
+	结构统一，易于学习、维护
+	新手也可写出好程序 
+
+主流框架介绍：
+   Struts2
+    MVC设计模式的实现
+	拦截器
+	可变和可重用的标签
+
+  Hibernate
+	ORM，简化数据库操作
+	DAO层
+
+	 Spring
+		依赖注入容器 / AOP实现
+		声明式事务
+		简化Java EE应用
+		黏合剂，将大家组装到一起
+	Spring MVC
+		结构最清晰的MVC Model2实现
+		高度可配置，支持多种视图技术
+		定制化开发
+
+	Mybatis
+	   
+		半自动化的ORM实现
+		DAO层
+		动态SQL
+		小巧灵活、简单易学
+
+组合： SSH ==》Struts2+Hibernate+Spring
+   *： SSM ==》SpringMVC+Mybatis+Spring  
+
+
+持久化是程序数据在瞬时状态和持久状态间转换的过程
+
+ORM（Object Relational Mapping）
+	编写程序的时候，以面向对象的方式处理数据
+	保存数据的时候，却以关系型数据库的方式存储
+ORM解决方案包含下面四个部分
+	在持久化对象上执行基本的增、删、改、查操作
+	对持久化对象提供一种查询语言或者API
+	对象关系映射工具
+	提供与事务对象交互、执行检查、延迟加载以及其他优化功能	
+
+	MyBatis前身是iBatis，本是Apache的一个开源的项目
+	官方网站：http://mybatis.org
+	
+	文档：  https://mybatis.org/mybatis-3/zh/index.html
+	ORM框架
+    实体类和SQL语句之间建立映射关系
+	
+	
+	特点
+		基于SQL语法，简单易学
+		能了解底层封装过程
+		SQL语句封装在配置文件中，便于统一管理与维护，降低程序的耦合度
+		方便程序代码调试
+
+
+**使用MyBatis的开发步骤
+    1）mvn下载mybatis-3.2.2.jar包并导入工程
+         <dependency>
+             <groupId>org.mybatis</groupId>
+             <artifactId>mybatis</artifactId>
+             <version>3.5.2</version>
+           </dependency>
+   2) 编写MyBatis核心配置文件(mybatis-cfg.xml)
+     1) 创建resources文件夹,存放配置文件
+
+
+   3) 创建实体类-POJO  (Userinfo)
+
+   4)  DAO层-SQL映射文件(UserinfoMapper.xml)
+
+   5）创建测试类
+        1)读取核心配置文件mybatis-config.xml
+        2)创建SqlSessionFactory对象，读取配置文件
+        3)创建SqlSession对象
+        4)调用mapper文件进行数据操作
+
+异常1：
+   ### Error building SqlSession.
+   ### The error may exist in org/hlx/dao/UserinfoMapper.xml
+   ### Cause: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: java.io.IOException: Could not find resource org/hlx/dao/UserinfoMapper.xml
+
+   原因：这个是配置文件，但无法读取;
+   解决;就是在pom.xml文件中写入
+   https://blog.csdn.net/hlx20080808/article/details/105227755
+       <build>
+          <!--必须包含资源文件-->
+          <resources>
+            <resource>
+              <directory>src/main/java</directory>
+              <!--目录下包含这些文件能被访问-->
+              <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+              </includes>
+            </resource>
+          </resources>
+        </build>
+
+类型别名（typeAliases）
+
+异常2：
+    ### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax;
+     check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+     where userId =22' at line 1
+  原因：多了）这个
+  解决： 找到这个“）”删除
+
+
+添加，修改，删除（必须事务提交！！）
+
+
+异常3：
+### Error building SqlSession.
+### Cause: org.apache.ibatis.builder.BuilderException:
+Error creating document instance.  Cause: org.xml.sax.SAXParseException; lineNumber: 39;
+columnNumber: 17; 元素类型为 "configuration" 的内容必须匹配 "(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?)"。
+原因： typeAliases必须在settings前面哦!
+解决：交换位置
+
+为何配置日志信息：
+   可以跟踪SQL语句的错误！！方便查看！！！
+  在mybatis-cfg.xml中配置
+    <!--配置日志信息-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+ 必须引入这个log4j包
+    <!--log4j-->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+
+
+MyBatis框架优缺点
+ 优点
+     与JDBC相比，减少了50%以上的代码量
+     最简单的持久化框架，小巧并简单易学
+     SQL代码从程序代码中彻底分离，可重用
+     提供XML标签，支持编写动态SQL
+     提供映射标签，支持对象与数据库的ORM字段映射
+ 缺点
+     SQL语句编写工作量大，对开发人员有一定要求
+     数据库移植性差
+
+MyBatis专注于SQL本身，是一个足够灵活的DAO层解决方案，适用于性能要求较高或者需求多变的互联网项目
+
+MyBatis基本要素
+  1） MyBatis的核心对象
+           SqlSessionFactoryBuilder 类
+           SqlSessionFactory接口
+           SqlSession接口
+   2） mybatis-config.xml  系统核心配置文件（心脏）
+   3） mapper.xml  SQL映射文件 （dao）
+
+
+SqlSessionFactoryBuilder
+    用过即丢，其生命周期只存在于方法体内
+    可重用其来创建多个 SqlSessionFactory 实例
+    负责构建SqlSessionFactory，并提供多个build方法的重载
+    参数： InputStream （字节流）、Reader（字符流）、Configuration（类）
+
+SqlSessionFactory
+    SqlSessionFactory是每个MyBatis应用的核心
+    作用：创建SqlSession实例
+     SqlSession session = factory.openSession(false)
+        true：关闭事务控制(默认)
+        false：开启事务控制
+
+    作用域：Application
+    生命周期与应用的生命周期相同
+    单例
+    存在于整个应用运行时，并且同时只存在一个对象实例
+
+
+SqlSession
+    包含了执行SQL所需的所有方法
+    对应一次数据库会话，会话结束必须关闭
+    线程级别，不能共享
+
+
+SqlSession的两种使用方式
+    1)通过SqlSession实例直接运行映射的SQL语句
+    2)基于Mapper接口方式操作数据
+
+
+  小结：  非集成环境下的最佳实践
+    SqlSessionFactoryBuilder
+      用过即丢，推荐作用域范围：方法体内
+    SqlSessionFactory
+      最佳作用域范围：应用的全局作用域
+      生命周期与应用的生命周期相同
+    SqlSession
+      线程级
+      一个request请求期间
+
+
+MyBatis基本要素
+核心对象
+    SqlSessionFactoryBuilder
+    SqlSessionFactory
+    SqlSession
+系统核心配置文件
+    properties
+    settings
+    typeAliases
+    environments
+    mappers
+SQL映射文件
+    mapper
+    select
+
+
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hlx.mapper.FoodinfoMapper">
+  <insert id="insert" parameterType="org.hlx.pojo.Foodinfo">
+    insert into foodinfo (foodId, foodName, remark, 
+      foodPrice, description, foodImage
+      )
+    values (#{foodid,jdbcType=INTEGER}, #{foodname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{foodprice,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{foodimage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.hlx.pojo.Foodinfo">
+    insert into foodinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="foodid != null">
+        foodId,
+      </if>
+      <if test="foodname != null">
+        foodName,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="foodprice != null">
+        foodPrice,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="foodimage != null">
+        foodImage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="foodid != null">
+        #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="foodname != null">
+        #{foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="foodprice != null">
+        #{foodprice,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="foodimage != null">
+        #{foodimage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hlx.pojo.Foodinfo">
+    update foodinfo
+    <set>
+      <if test="foodname != null">
+        foodName = #{foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="foodprice != null">
+        foodPrice = #{foodprice,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="foodimage != null">
+        foodImage = #{foodimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hlx.pojo.Foodinfo">
+    update foodinfo
+    set foodName = #{foodname,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      foodPrice = #{foodprice,jdbcType=DECIMAL},
+      description = #{description,jdbcType=VARCHAR},
+      foodImage = #{foodimage,jdbcType=VARCHAR}
+    where foodId = #{foodid,jdbcType=INTEGER}
+  </update>
+</mapper>

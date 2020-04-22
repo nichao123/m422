@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--实例化对象-->
+    <!--id 相当于对象名(一般以类名，必须首字母小写); class：完整的类路径-->
+
+    <!--1)pojo-->
+    <bean id="student" class="org.hlx.pojo.Student">
+        <property name="name" value="戴一样"/>
+        <property name="sex" value="男"/>
+    </bean>
+
+
+    <!--2)dao (save)-->
+    <bean id="studentDaoImpl" class="org.hlx.dao.impl.StudentDaoImpl"/>
+
+
+    <!--3)servic-->
+    <bean id="studentServiceImpl" class="org.hlx.service.impl.StudentServiceImpl">
+        <property name="studentDao" ref="studentDaoImpl"/>
+    </bean>
+
+
+    <!--4)action-->
+    <bean id="studentAction" class="org.hlx.action.StudentAction">
+        <property name="studentService" ref="studentServiceImpl"/>
+        <property name="student" ref="student"/>
+    </bean>
+
+
+</beans>

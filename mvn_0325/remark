@@ -1,0 +1,33 @@
+一、搭建mvn ，将纯静态页面复制到webapp目录下；
+
+二、后端：
+    2.1、util公共包: 存放BaseDao类，过滤器；
+
+    2.2、pojo包: 存放实体类
+
+    2.3、dao包:  存放底层数据接口和实现类
+         命名格式： 表名+Dao；
+                    表名+Dao+Impl；
+
+    2.4、service包:  存放业务层数据接口和实现类(暂时可以不写)
+          命名格式： 表名+Service；
+                     表名+Service+Impl；
+
+    2.5、servlet包:  存放控制类Servlet
+
+
+三、前端页面：
+   addUser.html ：
+        1）表单提交方式：get/post (必须用)； action=""
+            <form action="addUser" method="post">
+        2) 文本框的名字：
+             <input type="text" name="textfield">
+        3）有没有提交按钮；
+            <input type="submit" name="Submit" value="添加" style="width:80">
+
+
+
+
+
+异常1：java.lang.NullPointerException：org.hlx.util.ConfigManager.<init>(ConfigManager.java:41)
+       没有找到db.properties文件!!

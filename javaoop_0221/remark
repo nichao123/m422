@@ -1,0 +1,71 @@
+2020.02.21 作业讲解和线程
+ 一、 作业讲解
+
+ 二、线程
+   2.1>线程调度: 按照特定机制为多个线程分配CPU的使用权
+      1)void setPriority(int  newPriority) 更改线程的优先级
+      优先级高的线程获得CPU资源的概率较大
+
+     2)线程休程
+        让线程暂时线程指定时长，线程进入阻塞状态
+        睡眠时间过后线程会再进入可运行状态
+        sleep(long millis) 毫秒
+
+     3) 线程的强制运行
+        使当前线程暂停执行，等待其他线程结束后再继续执行本线程
+         join(long millis) 毫秒
+
+     4)线程的礼让
+        暂停当前线程，允许其他具有相同优先级的线程获得运行机会
+        该线程处于就绪状态，不转为阻塞状态
+         yield()
+       只是提供一种可能，但是不能保证一定会实现礼让
+
+   2.2>多线程共享数据引发的问题
+       多人抢票，会抢到同一张票。。。。
+      原因： 多个线程操作同一共享资源时，将引发数据不安全问题
+      解决：
+        (1) 同步方法
+        语法：
+           访问修饰符 synchronized 返回类型 方法名（参数列表）{……}
+           or
+           synchronized 访问修饰符  返回类型 方法名（参数列表）{……}
+
+        (2) 同步代码块
+         synchronized(syncObject){
+             //需要同步的代码
+         }
+      syncObject: 用this ,当前对象
+
+    2.3)查看ArrayList类的add()方法定义
+     运行代码结果可知，会出现以下几种情况:
+    ①Null
+    ②某些线程并未打印
+    ③数组下标越界异常: Exception in thread "Thread-28" java.lang.ArrayIndexOutOfBoundsException: 33
+    由此我们可以得出，在多线程情况下操作ArrayList 并不是线性安全的。
+
+    那如何解决呢?
+           // 解决措施①：使用Vector集合
+          protected static Vector<Object> arrayListSafe1 = new Vector<Object>();
+
+          // 解决措施②：我们加上Collections.synchronizedList，它会自动将我们的list方法进行改变，最后返回给我们一个加锁了List
+          static List<Object> arrayListSafe2 = Collections.synchronizedList(new ArrayList<Object>());
+
+          但还是存在概率问题！！！
+
+     2.4>线程安全的类型
+          线程安全	（安全）是,	  (效率)低,	多线程并发共享资源
+          非线程安全 (不安全)否,	效率)高,单线程
+
+        Hashtable  &&  HashMap的区别：
+
+         Hashtable
+            继承关系
+            实现了Map接口，Hashtable继承Dictionary类
+            线程安全，效率较低
+            键和值都不允许为null
+        HashMap
+            继承关系
+            实现了Map接口，继承AbstractMap类
+            非线程安全，效率较高
+            键和值都允许为null

@@ -1,0 +1,107 @@
+实现JDBC封装:
+    1>将所有增删改查操作抽取成接口
+    2>定义实体类传输数据
+    3>将通用的操作（打开、关闭连接等）封装到工具类
+    4>数据库工具类BaseDao：增、删、改、查的通用方法
+
+
+什么是DAO
+    Data Access Object(数据存取对象)
+    位于业务逻辑和持久化数据之间
+    实现对持久化数据的访问
+
+
+DAO模式的组成部分
+    DAO接口
+    DAO实现类
+    实体类
+    数据库连接和关闭工具类
+
+优势
+    隔离了数据访问代码和业务逻辑代码
+    隔离了不同数据库实现
+
+
+配置数据库访问参数:
+    换另一个数据库，那么如何来操作？
+    弊端： 数据库发生改变时，要重新修改代码，重新编译和部署
+    解决：将数据库信息写在配置文件当中，让程序通过读取配置文件来获得这些信息
+
+ 注意：main|右键|directory目录; 资源文件夹：resources
+        属性文件 db.properties
+        后缀为.properties
+        数据格式为“键=值”
+        使用“＃”来注释
+    Java中提供了Properties类来读取配置文件
+  //Properties类 ==>Map接口(key=value)
+    public  class Properties extends Hashtable<Object,Object>
+
+
+
+为何需要单例模式
+    BaseDao：操作数据库的基类
+    每个线程对系统操作都需new一个BaseDao实例
+    初始化时的I/O操作消耗系统资源，影响系统性能
+
+    对于每个线程，可共享一个实例
+
+单例模式： 系统运行期间，有且仅有一个实例
+
+ 一个类只有一个实例——最基本的要求:
+    1） 只提供私有构造器 private ConfigManager(){}
+    2） 定义了静态的该类私有对象     private static ConfigManager configManager;
+    3）提供一个静态的公有方法，返回创建或者获取本身的静态私有对象
+        public static ConfigManager getInstance() {}
+
+
+在并发环境下上述的单例模式实现是否存在弊端，线程是否安全？是否会出现多个configManager实例？
+    1)懒汉模式:
+        在类加载时不创建实例，采用延迟加载的方式，在运行调用时创建实例
+     特点
+        线程不安全
+        延迟加载（lazy loading）
+    如何解决线程安全问题？
+       同步（synchronized）
+
+
+    2)饿汉模式:
+        在类加载的时候，就完成初始化
+    特点
+        线程安全
+        不具备延迟加载特性
+
+懒汉模式与饿汉模式的区别：
+	懒汉模式                                              	饿汉模式
+概念	在类加载时不创建实例，采用延迟加载的方式，在运行调用时创建实例	在类加载的时候，就完成初始化
+特点	类加载速度快，但是运行时获取对象的速度较慢。——“时间换空间”	类加载较慢，但获取对象速度快。——“空间换时间”
+延迟加载(lazy loa ding)	具备	   不具备
+线程安全  	线程不安全	      线程安全
+
+
+
+Web服务器
+    是可以向发出请求的浏览器提供文档的程序
+    提供网上的信息浏览服务
+常用的Web服务器
+    Apache：Tomcat
+    Oracle：WebLogic
+    IBM：WebSphere
+
+
+Tomcat服务器
+    Apache Jakarta的开源项目
+    轻量级应用服务器
+    开源、稳定、资源占用小
+
+官网：http://tomcat.apache.org/
+    Tomcat解压
+    Tomcat目录结构
+    /bin	存放各种平台下用于启动和停止Tomcat的脚本文件
+    /conf	存放Tomcat服务器的各种配置文件
+    /lib	存放Tomcat服务器所需的各种JAR文件
+    /logs	存放Tomcat的日志文件
+    /temp	Tomcat运行时用于存放临时文件
+    /webapps	当发布Web应用时，默认情况下会将Web应用的文件存放于此目录中
+    /work	Tomcat把由JSP生成的Servlet放于此目录下
+
+IDea配置Tomcat8.5；

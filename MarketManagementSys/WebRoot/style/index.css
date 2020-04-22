@@ -1,0 +1,17 @@
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,form,img,dl,dt,dd,table,th,td,blockquote,fieldset,div,strong,label,em{margin:0;padding:0;border:0;}
+ul,ol,li{list-style:none;}
+input,button{margin:0;font-size:12px;vertical-align:middle;}
+body{font-size:12px;font-family:Arial, Helvetica, sans-serif;  text-align:center; margin:0 auto;  background:#000;}
+table{border-collapse:collapse;border-spacing:0;}
+
+.clearfloat{height:0;font-size:1px;clear:both;line-height:0;}
+
+#container{ width:680px;  text-align:left; margin:40px auto; }
+a{color:#333;text-decoration:none;}
+a:hover{color:#ef9b11; text-decoration:underline;}
+
+.box{ width:160px; float:left; display:inline; margin-right:5px;}
+.box h4{ padding-left:10px; width:150px; margin-bottom:10px; color:#eee; font-size:14px; height:26px; background:#242424; line-height:26px;}
+.box a{ margin-left:5px; font-size:12px; padding-left:16px; background:url(../images/plus.gif) no-repeat left 12px; color:#a0a0a0; display:block; line-height:32px;}
+.box a:hover{ background:url(../images/block.gif) no-repeat 3px 13px; color:#ff6600;}

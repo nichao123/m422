@@ -1,0 +1,55 @@
+DOM4j的使用大量的接口如下：
+    Document：定义XML文档
+
+     Element  定义XML元素
+             getRootElement(); 根节点
+             List elements();  获得多个元素
+             String attributeValue(String var1); 获得属性值
+             String elementTextTrim(String var1); 获得元素值
+
+             Element addAttribute(String var1, String var2); 添加属性值
+             Element addText(String var1); 添加元素值
+
+             Element element(String var1); 元素名称
+
+             //
+             Attribute attribute(String var1); 获取属性
+
+
+    Branch分支: 指能够包含子节点的节点
+              Element addElement(String var1);  添加元素
+
+    Node 节点
+          void setText(String var1); 设置文本值
+
+
+   Attribute：属性
+           void setValue(String var1); 设置属性值;
+
+
+DOM 与DOM4j区别：
+
+DOM
+    基于XML文档树结构的解析
+    适用于多次访问的XML文档
+    特点：比较消耗资源
+DOM4J
+    非常优秀的Java XML API
+    性能优异、功能强大
+    开放源代码
+
+DOM
+优点:1、丰富的API集合,可以轻松导航.
+        2、 整个DOM树加载到内存,允许随机访问.
+缺点:1、整个xml文档必须一次解析完.
+        2、整个DOM树都加载到内存中,内存要求高.
+        3、一般的DOM节点对于必须为所有节点创建对象的对象类型绑定不太理想.
+适用：对xml文档修改数据
+
+
+DOM4J
+优点：1、灵活性最高
+     2、易用性和功能强大、性能优异
+缺点：1、复杂的api
+     2、移植性差
+适用：自行选择

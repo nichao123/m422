@@ -1,0 +1,36 @@
+2020.02.18 作业讲解和字符流
+一、作业讲解
+
+二、字符流  （使用文本或小说...）
+   2.1>  Reader抽象类  ,用子类FileReader;
+            1) public class InputStreamReader extends Reader
+            2)  public class FileReader extends InputStreamReader
+          * 子类InputStreamReader常用的构造方法:
+               InputStreamReader(InputStream in)
+               InputStreamReader(InputStream in, Charset cs)
+          说明：
+                 InputStreamReader类是抽象类Reader的子类;
+                 FileReader类是类InputStreamReader的子类;
+
+            **重点：字节流转换成字符流
+            FileInputStream fis =new FileInputStream(file);
+            InputStreamReader  isr =new InputStreamReader(fis,"utf-8");
+            BufferedReader reader =new BufferedReader(isr)    //缓存流；
+
+       2.2>  Writer抽象类  ,用子类FileWriter;
+             public class FileWriter extends OutputStreamWriter
+             public class OutputStreamWriter extends Writer
+
+               说明：
+                  InputStreamWriter类是抽象类Writer的子类;
+                  FileWriter类是类InputStreamWriter的子类;
+
+      2.3>读写二进制文件 （使用音乐或视频或音频...）
+          1.  DataInputStream类是FilterInputStream的子类,必须一起使用；
+             public class DataInputStream extends FilterInputStream
+
+          2.  DataOutputStream类是 FileOutputStream的子类,必须一起使用；
+             public  class DataOutputStream extends FilterOutputStream
+
+https://blog.csdn.net/hlx20080808/article/details/104344995
+

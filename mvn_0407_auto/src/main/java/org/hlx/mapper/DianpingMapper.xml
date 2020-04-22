@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hlx.mapper.DianpingMapper">
+  <insert id="insert" parameterType="org.hlx.pojo.Dianping">
+    insert into dianping (did, foodId, kouwei, 
+      dpcontent, userId, dpdate
+      )
+    values (#{did,jdbcType=INTEGER}, #{foodid,jdbcType=INTEGER}, #{kouwei,jdbcType=VARCHAR}, 
+      #{dpcontent,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{dpdate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.hlx.pojo.Dianping">
+    insert into dianping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        did,
+      </if>
+      <if test="foodid != null">
+        foodId,
+      </if>
+      <if test="kouwei != null">
+        kouwei,
+      </if>
+      <if test="dpcontent != null">
+        dpcontent,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="dpdate != null">
+        dpdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="foodid != null">
+        #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="kouwei != null">
+        #{kouwei,jdbcType=VARCHAR},
+      </if>
+      <if test="dpcontent != null">
+        #{dpcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="dpdate != null">
+        #{dpdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hlx.pojo.Dianping">
+    update dianping
+    <set>
+      <if test="foodid != null">
+        foodId = #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="kouwei != null">
+        kouwei = #{kouwei,jdbcType=VARCHAR},
+      </if>
+      <if test="dpcontent != null">
+        dpcontent = #{dpcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="dpdate != null">
+        dpdate = #{dpdate,jdbcType=DATE},
+      </if>
+    </set>
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hlx.pojo.Dianping">
+    update dianping
+    set foodId = #{foodid,jdbcType=INTEGER},
+      kouwei = #{kouwei,jdbcType=VARCHAR},
+      dpcontent = #{dpcontent,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      dpdate = #{dpdate,jdbcType=DATE}
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+</mapper>

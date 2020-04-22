@@ -1,0 +1,64 @@
+2020.2.25 作业讲解和XML解析
+一、作业讲解
+二、XML
+  1）XML？
+    XML（EXtensible Markup Language）,可扩展标记语言，是描述数据和数据结构的；
+    特点：
+    XML与操作系统、编程语言的开发平台无关
+    实现不同系统之间的数据交换
+
+  2）XML作用？
+     （1）数据交互
+     （2）配置应用程序和网站
+     （3）Ajax基石
+
+ 3）XML编写注意事项
+    （1）所有XML元素都必须有结束标签
+    （2）XML标签对大小写敏感
+    （3）XML必须正确的嵌套
+    （4）同级标签以缩进对齐
+    （5）元素名称可以包含字母、数字或其他的字符
+
+ 4) DOM解析XML
+    文档对象模型(Document Object Model)
+    DOM把XML文档映射成一个倒挂的树
+
+   接口：
+   1）Document:整个文档
+       (1) NodeList getElementsByTagName(String Tag) 根据节点名称获取孩子节点
+       (2) Element getDocumentElement(); 获得根节点
+       (3) Element createElement(String tagName) 创建节点
+
+   2) Node :单个节点
+      （1） NodeList getChildNodes()  获得孩子节点
+      （2） Node getFirstChild();  获得第一个子节点
+      （2） Node removeChild(Node oldChild);  删除一个子节点
+      （2） Node appendChild(Node newChild);  添加一个子节点
+
+
+   3）Element：元素
+       (1) String getTagName() :获得标签名称；
+       (2) setAttribute(String name,  String value) 设置属性的值
+       (3) removeAttribute(String name)  移除属性
+       (3) removeAttribute(String name)  移除属性
+
+
+5) DOM解析XML文件具体步骤:
+    2.1>面向对象来解析XML;
+    2.2>封装Book类
+    2.3>封装业务类
+       （1） 文档对象方法
+       （2） 显示XML方法
+       （3） 添加方法
+           3.1)创建节点：document.createElement（String str）
+           3.2)创建属性节点：document.createAttribute（String str）
+           3.3)设置属性值：setValue(String value)
+           3.4)设置文本值：setTextContent(String textContent)
+           3.5)添加节点：Node appendChild(Node newChild)
+           3.6)根节点： document.getDocumentElement();
+        (4)写入XML方法（通用的）
+            4.1)转换器工厂对象  TransformerFactory factory = TransformerFactory.newInstance();
+            4.2)转换器对象  Transformer transform = factory.newTransformer();
+            4.3)DOM数据源对象   DOMSource source = new DOMSource(document文档对象);
+            4.4)文件结果流对象    StreamResult result = new StreamResult(new FileOutputStream(要解析的文件名));
+            4.5)文件写入XML   transformer.transform(source, result);

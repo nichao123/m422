@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hlx.mapper.FoodorderinfoMapper">
+  <insert id="insert" parameterType="org.hlx.pojo.Foodorderinfo">
+    insert into foodorderinfo (orderId, userId, foodId, 
+      sl, dcdate, subprice)
+    values (#{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{foodid,jdbcType=INTEGER}, 
+      #{sl,jdbcType=INTEGER}, #{dcdate,jdbcType=DATE}, #{subprice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="org.hlx.pojo.Foodorderinfo">
+    insert into foodorderinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="foodid != null">
+        foodId,
+      </if>
+      <if test="sl != null">
+        sl,
+      </if>
+      <if test="dcdate != null">
+        dcdate,
+      </if>
+      <if test="subprice != null">
+        subprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="foodid != null">
+        #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="sl != null">
+        #{sl,jdbcType=INTEGER},
+      </if>
+      <if test="dcdate != null">
+        #{dcdate,jdbcType=DATE},
+      </if>
+      <if test="subprice != null">
+        #{subprice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hlx.pojo.Foodorderinfo">
+    update foodorderinfo
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="foodid != null">
+        foodId = #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="sl != null">
+        sl = #{sl,jdbcType=INTEGER},
+      </if>
+      <if test="dcdate != null">
+        dcdate = #{dcdate,jdbcType=DATE},
+      </if>
+      <if test="subprice != null">
+        subprice = #{subprice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hlx.pojo.Foodorderinfo">
+    update foodorderinfo
+    set userId = #{userid,jdbcType=INTEGER},
+      foodId = #{foodid,jdbcType=INTEGER},
+      sl = #{sl,jdbcType=INTEGER},
+      dcdate = #{dcdate,jdbcType=DATE},
+      subprice = #{subprice,jdbcType=DECIMAL}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

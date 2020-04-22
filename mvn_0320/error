@@ -1,0 +1,8 @@
+一异常：java.lang.ClassNotFoundException:  com.mysql.jdbc.Driver
+  原因：在mvn中没有加入驱动包mysql
+  解决：在pom.xml文件中添加驱动包
+
+
+二异常：com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'studentNo' in 'where clause'
+    原因：字段名写错studentNo
+    解决：修改字段名subjectNo

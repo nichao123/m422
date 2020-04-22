@@ -1,0 +1,134 @@
+一、Servlet做了什么？ 
+  本身不做任何业务处理,只是接收请求并决定调用哪个JavaBean去处理请求
+确定用哪个页面来显示处理返回的数据;
+
+JavaBean其实就是一个类；
+包含:
+    1)业务bean; (CURD)
+	2)数据bean; （实体）
+	
+	
+二、Servlet是什么？ 
+ 简单：将HTML页面嵌入到Java代码中，是一种服务器端的Java应用程序；
+ 
+三、主要Servlet API介绍
+	1）javax.servlet.Servlet接口
+	   所有Java Servlet的基础接口类，规定了必须由Servlet具体类实现的方法集
+	   public interface Servlet {
+	   
+		void init(ServletConfig var1) throws ServletException;
+
+		void service(ServletRequest var1, ServletResponse var2) throws ServletException, IOException;
+
+		void destroy();
+	   
+	   }
+	   
+	2）javax.servlet.GenericServlet抽象类
+	  是Servlet的通用版本，是一种与协议无关的Servlet
+	  public abstract class GenericServlet implements Servlet, ServletConfig, Serializable {
+	  
+	   public abstract void service(ServletRequest var1, ServletResponse var2) throws ServletException, IOException;
+	  
+	  }
+	  
+	  
+	3）javax.servlet.http.HttpServlet抽象类
+	  在GenericServlet基础上扩展的基于Http协议的Servlet
+	   public abstract class HttpServlet extends GenericServlet {
+	      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	   }
+
+四、Servlet生命周期各个阶段
+	加载和实例化 ==》 构造方法
+	初始化  ==》 init方法
+	处理请求   ==》 doDet方法 (多次请求处理)
+	销毁  ==》 destroy方法
+
+五、Servlet中主要方法
+	init()：Servlet的初始化方法，仅仅会执行一次
+	service()：处理请求和生成响应
+	destroy()：在服务器停止并且程序中的Servlet对象不再使用的时候调用，只执行一次
+
+六、serlvet接口	
+	ServletRequest：封装客户的请求信息
+	ServletResponse：创建响应信息，将处理结果返回给客户端
+	ServletConfig：包含了Servlet的初始化参数信息
+	 掌握方法：
+	   1)单个值：  String getInitParameter(String var1);
+       2)多个值： Enumeration<String> getInitParameterNames();
+
+七、部署运行Servlet
+    7.1） 修改web.xml（部署描述文件）
+         自动添加<servlet>：把Servlet内部名映射到一个Servlet类名
+         手动添加<servlet-mapping>：把用户访问的URL映射到Servlet的内部名
+
+    7.2） 通过URL访问Servlet
+     http://localhost:8888/mymvn3_0323_war/hello
+
+
+   7.3) 初始化参数设置
+      配置<init-param>元素:
+        <servlet>
+              <servlet-name>HelloServlet</servlet-name>
+              <servlet-class>org.hlx.HelloServlet</servlet-class>
+              <!--参数-->
+              <init-param>
+                  <param-name>count</param-name>
+                  <param-value>1000</param-value>
+              </init-param>
+              <init-param>
+                  <param-name>uname</param-name>
+                  <param-value>戴一洋</param-value>
+              </init-param>
+          </servlet>
+
+   注意：web.xml配置文件麻烦吗？
+       有没有更简单方法：注解！@WebServlet(name = "MyServlet",urlPatterns ="/my")
+
+      配置参数:
+       @WebServlet(name = "MyServlet",urlPatterns ="/my",initParams ={@WebInitParam(name="addr",value = "杭州市")} )
+
+     out.println()不换行！！
+
+*八、servlet中接口
+   8.1) HttpServletRequest  请求对象
+        1)  getParameter()  返回字符串，是单个值；
+        2)  getParameterValues()  返回字符串数组，是多个值；
+        3） setCharacterEncoding() 处理请求乱码
+        4)  getRequestDispatcher() 转发 (间接跳转)  doPost方法！！
+           4.1> 地址栏没有发生变化; http://localhost:8888/mymvn3_0323_war/reg
+           4.2> 同一个请求rquest;
+        5)  request.getSession()  获得会话对象
+
+     注意HTML页面
+            1.表单:  <form action="servet" method="post">
+            2.有没有提交按钮   <input type="submit" value="提交"  />
+            3.文本框名称 <input type="text"  value="" name="name" />
+
+
+   8.2) HttpServletResponse 响应对象
+        1）sendRedirect()  （重定向）直接跳转  doGet方法！！
+            1> 地址栏发生变化;http://localhost:8888/mymvn3_0323_war/show
+            2> 不是同一个请求rquest;
+
+
+
+  8.3)  HttpSession   会话对象 (保存数据)
+         void setAttribute(String var1, Object var2);   保存数据
+         Object getAttribute(String var1); 获得数据
+         void removeAttribute(String var1); 移除属性
+         void invalidate();  会话失效
+         String getId();   获得会话ID
+         void setMaxInactiveInterval(int var1);  设置有效时间
+         int getMaxInactiveInterval();   获得会话的周期默认：1800秒 =30分
+
+总结：
+    Servlet的作用
+          负责接收请求，调用相应Service方法，决定如何响应，本身不做业务逻辑
+    创建和部署Servlet（重点）
+        创建：继承自HttpServlet
+        部署：修改web.xml添加<servlet>、<servlet-mapping>
+    Servlet的好处
+         专人专职：JSP负责显示，Servlet负责控制
+

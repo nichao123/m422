@@ -1,0 +1,12 @@
+  //1.响应编码
+        response.setContentType("text/html;charset=utf-8");
+
+        //2.输出对象
+        PrintWriter out = response.getWriter();
+
+
+        //输出信息
+
+        //3.关闭对象
+        out.flush();
+        out.close();

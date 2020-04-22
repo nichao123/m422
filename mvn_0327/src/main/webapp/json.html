@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        //加载事件
+        $(function () {
+            // 1) 定义JSON对象
+            var student = {"name": "mike", "age": 20, "sex": "man"};
+            //alert(student.name);
+            //添加
+            $("#dv").append(student.name + "-" + student.age + "-" + student.sex);
+
+            //2.定义JSON数组
+            var citys = ["北京", "上海", "天津", "杭州"];
+
+            //遍历 jquery
+            $.each(citys, function (index, ele) {
+                //追加数据
+                $(".ul").append("<li>" + ele + "</li>");
+            });
+
+            //对象数组
+            var stus = [
+                {"name": "mike", "age": 20, "sex": "man"},
+                {"name": "steven", "age": 18, "sex": "feman"},
+                {"name": "armand", "age": 19, "sex": "man"}
+            ];
+
+            //遍历 jquery
+            $.each(stus, function (index, student) {
+                //追加数据
+                $("#dv2").append(student.name + "-" + student.age + "-" + student.sex+"<br/>");
+            });
+
+
+
+        });
+    </script>
+</head>
+<body>
+<div id="dv"></div>
+
+<ul class="ul">
+
+<div id="dv2"></div>
+
+</ul>
+</body>
+</html>

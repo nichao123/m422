@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--必须指定当前映射的文件名-->
+<mapper namespace="org.nichao.dao.UserinfoMapper">
+    <!--条件查询 : id是方法名称; resultType返回结果类型  -->
+    <select id="selectFoodinfo" resultType="org.nichao.pojo.Foodinfo">
+      select * from foodinfo where foodId = #{foodId}
+  </select>
+
+    <!--所有数据-->
+    <select id="all" resultType="org.nichao.pojo.Foodinfo">
+      select * from foodinfo
+  </select>
+
+    <!--id：方法名唯一， parameterType参数类型-->
+    <insert id="save" parameterType="Foodinfo">
+     insert into foodinfo(foodId,foodName,remark,foodPrice,description,foodImage)
+     values(#{foodId},#{foodName},#{remark},#{foodPrice},#{description},#{foodImage})
+    </insert>
+
+
+    <!--id：方法名唯一， parameterType参数类型-->
+    <update id="update" parameterType="Foodinfo">
+     update foodinfo set foodName=#{foodName},remark=#{remark},foodPrice=#{foodPrice},description=#{description},foodImage=#{foodImage}
+     where foodId =#{foodId}
+    </update>
+
+    <!--id：方法名唯一， parameterType参数类型 id-->
+    <delete id="del" parameterType="int">
+     delete from  foodinfo  where foodId =#{foodId}
+    </delete>
+
+</mapper>

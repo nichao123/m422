@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<books> 
+  <book bno="584859592" id="T15"> 
+    <name>heiheihei</name>  
+    <price>666.0</price> 
+  </book>  
+  <book bno="684859593" id="T16"> 
+    <name>Mysql数据库</name>  
+    <price>49.9</price> 
+  </book>  
+  <book id="T16"> 
+    <name>66666</name>  
+    <price>666.0</price> 
+  </book>  
+  <book id="T19">
+    <name>66666</name>
+    <price>666.0</price>
+  </book>
+</books>

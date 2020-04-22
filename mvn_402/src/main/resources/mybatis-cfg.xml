@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--1)加载数据属性文件-->
+    <properties resource="database.properties"/>
+
+    <!--配置日志信息-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+    <!--类型别名（typeAliases）-->
+    <typeAliases>
+        <!--alias别名：这个类的类名称-->
+        <typeAlias type="org.nichao.pojo.Foodinfo" alias="Foodinfo"/>
+
+    </typeAliases>
+
+
+
+    <!--运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--事务管理-->
+            <transactionManager type="JDBC"/>
+            <!--数据连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--2.映射SQL语句-->
+        <mapper resource="org/nichao/dao/UserinfoMapper.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--1)加载数据属性文件-->
+    <properties resource="database.properties"/>
+
+    <!--配置日志信息-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!--resultMap的自动映射级别-autoMappingBehavior, 禁止使用-->
+        <!--<setting  name="autoMappingBehavior" value="NONE"/>-->
+        <setting  name="autoMappingBehavior" value="FULL"/>
+
+        <!--这个配置使全局的映射器(二级缓存)启用或禁用缓存-->
+        <setting name="cacheEnabled" value="true" />
+
+    </settings>
+
+    <!--类型别名（typeAliases）-->
+    <typeAliases>
+        <!--包名，别名是用类名-->
+        <package name="org.nichao.pojo"/>
+
+    </typeAliases>
+
+
+
+    <!--运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--事务管理-->
+            <transactionManager type="JDBC"/>
+            <!--数据连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--指定映射文件的包名-->
+        <package name="org.nichao.mapper"/>
+    </mappers>
+</configuration>

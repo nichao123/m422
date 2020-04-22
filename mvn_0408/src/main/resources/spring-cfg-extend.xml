@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--实例化对象-->
+    <!--id 相当于对象名(一般以类名，必须首字母小写); class：完整的类路径-->
+    <bean id="animal" class="org.hlx.extend.Animal" abstract="true">
+           <property name="name"  value="小浣熊"/>
+    </bean>
+
+    <!--子类必须指定你的父亲 parent="animal" -->
+    <bean id="cat"  class="org.hlx.extend.Cat" parent="animal">
+        <property name="name" value="小花猫"/>
+    </bean>
+
+
+</beans>

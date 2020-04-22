@@ -1,0 +1,61 @@
+一、SSM搭建 ==>MVC模式
+   1）Spring ==》C Controller  作用:控制(IOC/DI,AOP)
+   2）SpringMVC ==》V View     作用:页面显示(前端控制DispatchServlet)
+   3）Mybatis ==》M Model     作用:底层数据(ORM)
+
+注意： 1)与2)本身自己一体的；
+       1)与3)整合在一起； spring+mybatis
+
+
+二、SSM搭建的步骤
+   1）pom.xml引入依赖包
+
+   2）resources资源文件
+      1)操作数据库属性文件 :database.properties
+      2)日志文件: log4j.properties
+      3)spring与mybatis整合文件：spring-mybatis.xml
+      3)springmvc配置文件：springmvc.xml
+
+   3）web.xml文件
+      <!--配置全局参数 -->
+      <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-*.xml</param-value>
+      </context-param>
+
+      <!-- 读取Spring上下文的监听器 -->
+      <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+      </listener>
+
+  4）后端数据
+      1)实体类    org.hlx.pojo  (属性与数据库表的字段一致)
+      2)底层Dao    org.hlx.dao
+      3)映射SQL文件    org.hlx.mapping (id必须与Dao接口的方法名相同)
+      4)业务Service  org.hlx.service
+        1)业务接口
+        2)具体实现这个业务接口
+           （1） 注解放在类上：  @Service   //业务 @Transactional  //事务
+           （2） 注入底层数据  @Resource  private UserinfoDao  userinfoDao;
+           （3） 事务切入:    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+      5）控制器Controller  org.hlx.controll;
+           （1） 注解放在类上：@Controller
+           （2） 注入业务数据  @Resource  private UserinfoService userinfoService;
+           （3） 处理业务数据 写方法；
+      6）JSP页面测试  list.jsp
+
+
+use resturant;
+select * from userinfo;
+
+-- （1）loginName 模糊查询
+-- （2) phone 模糊查询
+--  (3) loginName 和 phone 模糊查询
+
+select * from userinfo where
+-- loginName like '%y%'
+-- and
+phone like '123%';
+
+
+

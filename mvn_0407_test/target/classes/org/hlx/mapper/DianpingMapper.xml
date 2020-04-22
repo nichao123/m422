@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hlx.mapper.DianpingMapper">
+  <resultMap id="BaseResultMap" type="org.hlx.pojo.Dianping">
+    <id column="did" jdbcType="INTEGER" property="did" />
+    <result column="foodId" jdbcType="INTEGER" property="foodid" />
+    <result column="kouwei" jdbcType="VARCHAR" property="kouwei" />
+    <result column="dpcontent" jdbcType="VARCHAR" property="dpcontent" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="dpdate" jdbcType="DATE" property="dpdate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    did, foodId, kouwei, dpcontent, userId, dpdate
+  </sql>
+  <select id="selectByExample" parameterType="org.hlx.pojo.DianpingExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dianping
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dianping
+    where did = #{did,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dianping
+    where did = #{did,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.hlx.pojo.DianpingExample">
+    delete from dianping
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.hlx.pojo.Dianping">
+    insert into dianping (did, foodId, kouwei, 
+      dpcontent, userId, dpdate
+      )
+    values (#{did,jdbcType=INTEGER}, #{foodid,jdbcType=INTEGER}, #{kouwei,jdbcType=VARCHAR}, 
+      #{dpcontent,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{dpdate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.hlx.pojo.Dianping">
+    insert into dianping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        did,
+      </if>
+      <if test="foodid != null">
+        foodId,
+      </if>
+      <if test="kouwei != null">
+        kouwei,
+      </if>
+      <if test="dpcontent != null">
+        dpcontent,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="dpdate != null">
+        dpdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="foodid != null">
+        #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="kouwei != null">
+        #{kouwei,jdbcType=VARCHAR},
+      </if>
+      <if test="dpcontent != null">
+        #{dpcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="dpdate != null">
+        #{dpdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.hlx.pojo.DianpingExample" resultType="java.lang.Long">
+    select count(*) from dianping
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dianping
+    <set>
+      <if test="record.did != null">
+        did = #{record.did,jdbcType=INTEGER},
+      </if>
+      <if test="record.foodid != null">
+        foodId = #{record.foodid,jdbcType=INTEGER},
+      </if>
+      <if test="record.kouwei != null">
+        kouwei = #{record.kouwei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dpcontent != null">
+        dpcontent = #{record.dpcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dpdate != null">
+        dpdate = #{record.dpdate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dianping
+    set did = #{record.did,jdbcType=INTEGER},
+      foodId = #{record.foodid,jdbcType=INTEGER},
+      kouwei = #{record.kouwei,jdbcType=VARCHAR},
+      dpcontent = #{record.dpcontent,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=INTEGER},
+      dpdate = #{record.dpdate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hlx.pojo.Dianping">
+    update dianping
+    <set>
+      <if test="foodid != null">
+        foodId = #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="kouwei != null">
+        kouwei = #{kouwei,jdbcType=VARCHAR},
+      </if>
+      <if test="dpcontent != null">
+        dpcontent = #{dpcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="dpdate != null">
+        dpdate = #{dpdate,jdbcType=DATE},
+      </if>
+    </set>
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hlx.pojo.Dianping">
+    update dianping
+    set foodId = #{foodid,jdbcType=INTEGER},
+      kouwei = #{kouwei,jdbcType=VARCHAR},
+      dpcontent = #{dpcontent,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      dpdate = #{dpdate,jdbcType=DATE}
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+</mapper>

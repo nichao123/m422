@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="mvn_323:war exploded2">
+    <output-path>$PROJECT_DIR$/out/artifacts/mvn_323_war_exploded2</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="mvn_323" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.47" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl:1.2" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="mvn_323/web/Web" />
+    </root>
+  </artifact>
+</component>

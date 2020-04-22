@@ -1,0 +1,40 @@
+一、什么是JDBC?
+Java数据库连接技术(Java DataBase Connectivity)，能实现Java程序对各种数据库的访问
+由一组使用Java语言编写的类和接口(JDBC API)组成，它们位于java.sql以及javax.sql中
+
+二、JDBC访问数据库步骤
+   1.加载驱动: Class.forName() (每一种数据都有对应的驱动包)
+   2.进行连接: DriverManager获取Connection连接
+   3.创建Statement执行SQL语句(做事情)
+   4.返回ResultSet查询结果(取东西)
+   5.释放资源,其实就是关闭;
+   
+   Java MySQL 连接:  https://www.runoob.com/java/java-mysql-connect.html
+   
+   MySQL5.7.29只能用java-mysql-connect5.1.46版本；
+
+*三、Statement与PreparedStatement区别
+	Statement由方法createStatement()创建，该对象用于发送简单的SQL语句；
+	PreparedStatement由方法prepareStatement()创建，该对象用于发送带有一个或者多个输入参数的SQL语句
+	  SQL语句使用“?”作为数据占位符
+	  使用setXxx()方法设置数据
+
+    PreparedStatement—预编译
+		1）效率、性能、开销
+		2）安全性
+		3）代码可读性
+
+ 总结：
+	  JDBC API：定义了一系列的接口和类，集成在java.sql和javax.sql包中
+	  DriverManager：管理各种不同的JDBC驱动
+	  JDBC 驱动：负责连接不同类型的数据库
+
+	JDBC优点
+		不必为不同的数据库专门编写不同的程序，而只需要加载不同的数据库驱动即可
+		
+	JDBC的编程步骤
+		Class.forName()加载驱动
+		DriverManager.getConnection(URL,用户名,密码)获得数据库连接
+		获得Statement/PreparedStatement对象，执行SQL语句
+		处理执行结果，释放资源
+

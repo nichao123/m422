@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/mvn_323" />
+    <file type="web" url="file://$PROJECT_DIR$/mvn_324" />
+    <file type="web" url="file://$PROJECT_DIR$/mvn_325" />
+    <file type="web" url="file://$PROJECT_DIR$/mvn_413" />
+    <file type="web" url="file://$PROJECT_DIR$/mvn_chaoshi" />
+    <file type="web" url="file://$PROJECT_DIR$/mvn_ssm_417" />
+    <file type="web" url="file://$PROJECT_DIR$/mvn_ssm_app" />
+    <file type="web" url="file://$PROJECT_DIR$/mvn_test" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/mvn1_0318/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_319/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_320/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_323/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_324/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_325/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_402/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_407/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_407_auto/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_413/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_chaoshi/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_ssm_417/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_ssm_app/pom.xml" />
+        <option value="$PROJECT_DIR$/mvn_test/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

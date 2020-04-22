@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--必须指定当前映射的文件名-->
+<mapper namespace="org.hlx.dao.UserinfoMapper">
+    <!--条件查询 : id是方法名称; resultType返回结果类型  -->
+    <select id="selectUerinfo" resultType="org.hlx.pojo.Userinfo">
+      select * from userinfo where userId = #{userId}
+  </select>
+
+    <!--所有数据-->
+    <select id="all" resultType="org.hlx.pojo.Userinfo">
+      select * from userinfo
+  </select>
+
+    <!--id：方法名唯一， parameterType参数类型-->
+    <insert id="save" parameterType="Userinfo">
+     insert into userinfo(loginName,loginPass,phone,realname,amount)
+     values(#{loginName},#{loginPass},#{phone},#{realname},#{amount})
+    </insert>
+
+
+    <!--id：方法名唯一， parameterType参数类型-->
+    <update id="update" parameterType="Userinfo">
+     update userinfo set loginName=#{loginName},loginPass=#{loginPass},phone=#{phone},realname=#{realname},amount=#{amount}
+     where userId =#{userId}
+    </update>
+
+    <!--id：方法名唯一， parameterType参数类型 id-->
+    <delete id="del" parameterType="int">
+     delete from  userinfo  where userId =#{userId}
+    </delete>
+
+</mapper>

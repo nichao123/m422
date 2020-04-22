@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<books> 
+  <book id="imooc-001" categlory="history"> 
+    <name>三国演义</name>  
+    <author>罗贯中</author>  
+    <price>156.8</price> 
+  </book>  
+  <book id="imooc-002" categlory="software"> 
+    <name>西游记</name>  
+    <author>吴承恩</author>  
+    <price>166.6</price> 
+  </book> 
+</books>
